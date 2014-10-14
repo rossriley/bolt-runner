@@ -45,7 +45,7 @@ namespace :docker do
     task :proxy do
         on roles :host do
             config = ""
-            proxyport = capture "docker port #{fetch(:docker_appname)}:80"
+            proxyport = capture "docker port #{fetch(:docker_appname)} 80"
             servername = "#{fetch(:docker_appname)}."+proxy
             config <<  "server {" + "\n"
             config << "  server_name "+servername+";" + "\n"
