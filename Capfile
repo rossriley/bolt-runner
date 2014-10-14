@@ -58,6 +58,7 @@ namespace :docker do
             destination = basepath + fetch(:docker_appname)+".conf"
             io   = StringIO.new(config)
             upload! io,   destination
+            invoke 'deploy:restart'            
             puts servername
         end 
     end
