@@ -23,9 +23,7 @@ set :docker_image,      "rossriley/docker-bolt"
 set :env_vars,          {
     'BOLT_EXT'=>"#{fetch(:package)} #{fetch(:version)}"
 }
-set :proxies, [
-    'bolt.dockerfly.com'
-]
+set :proxy, 'bolt.dockerfly.com'
 
 
 
@@ -47,16 +45,14 @@ namespace :docker do
     task :proxy do
         on roles :host do
             config = ""
-            fetch(:proxies).each do |proxy|
-                proxyport = capture "docker port #{fetch(:docker_appname)}:80"
-                config <<  "server {" + "\n"
-                config << "  server_name "+proxy+";" + "\n"
-                config << "  location / {" + "\n"
-                config << "    proxy_pass http://"+proxyport+"/;" + "\n"
-                config << "    proxy_set_header Host $http_host;" + "\n"
-                config << "  }" + "\n"
-                config << "}" + "\n"
-            end
+            proxyport = capture "docker port #{fetch(:docker_appname)}:80"
+            config <<  "server {" + "\n"
+            config << "  server_name #{fetch(:docker_appname)}."+proxy+";" + "\n"
+            config << "  location / {" + "\n"
+            config << "    proxy_pass http://"+proxyport+"/;" + "\n"
+            config << "    proxy_set_header Host $http_host;" + "\n"
+            config << "  }" + "\n"
+            config << "}" + "\n"
             basepath = "dockerappliance/conf/nginx/"
             destination = basepath + fetch(:docker_appname)+".conf"
             io   = StringIO.new(config)
