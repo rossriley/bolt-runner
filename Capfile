@@ -24,7 +24,11 @@ set :env_vars,          {
     'BOLT_EXT'=>"#{fetch(:package)} #{fetch(:version)}"
 }
 set :proxy, 'bolt.dockerfly.com'
-
+set :links, {
+    "dockerfly_php53" => "php53",
+    "dockerfly_php54" => "php54",
+    "dockerfly_php55" => "php55"
+}
 
 
 
