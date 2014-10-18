@@ -25,9 +25,9 @@ set :env_vars,          {
 }
 set :proxy, 'bolt.dockerfly.com'
 set :links, {
-    "dockerfly_php53" => "php53",
-    "dockerfly_php54" => "php54",
-    "dockerfly_php55" => "php55"
+    "dockerfly_php53" => "php",
+    "dockerfly_php54" => "php",
+    "dockerfly_php55" => "php"
 }
 
 
