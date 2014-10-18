@@ -18,6 +18,7 @@ set :stage,             "production" ### Default stage
 
 set :package, ENV['package']
 set :version, ENV['version']
+set :php,     ENV['php']
 
 set :docker_image,      "rossriley/docker-bolt"
 set :env_vars,          {
@@ -25,7 +26,7 @@ set :env_vars,          {
 }
 set :proxy, 'bolt.dockerfly.com'
 set :links, {
-    "dockerfly_php#{fetch(:php)}" => "php",
+    "dockerfly_php#{fetch(:php, '55')}" => "php",
 }
 
 
