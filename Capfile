@@ -20,7 +20,7 @@ set :package, ENV['package']
 set :version, ENV['version']
 set :php,     ENV['php']
 
-set :docker_image,      "rossriley/docker-bolt:#{fetch(:php, 'latest')}"
+set :docker_image,      -> {"rossriley/docker-bolt:#{fetch(:php, 'latest')}"}
 set :env_vars,          {
     'BOLT_EXT'=>"#{fetch(:package)} #{fetch(:version)}"
 }
