@@ -22,7 +22,8 @@ set :php,     ENV['php']
 
 set :docker_image,      -> {"rossriley/docker-bolt:#{fetch(:php, 'latest')}"}
 set :env_vars,          {
-    'BOLT_EXT'=>"#{fetch(:package)} #{fetch(:version)}"
+    'BOLT_EXT'=>"#{fetch(:package)} #{fetch(:version)}",
+    'BOLT_THEME' => "#{fetch(:package)}"
 }
 set :proxy, 'bolt.dockerfly.com'
 
