@@ -23,12 +23,13 @@ set :title,   ENV['title']
 
 
 set :docker_image,      -> {"rossriley/docker-bolt:#{fetch(:php, 'latest')}"}
+set :proxy, 'bolt.dockerfly.com'
 set :env_vars,          {
     'BOLT_EXT'=>"#{fetch(:package)} #{fetch(:version)}",
     'BOLT_THEME' => "#{fetch(:package)}",
-    'BOLT_TITLE' => "#{fetch(:title)}"
+    'BOLT_TITLE' => "#{fetch(:title)}",
+    'VIRTUAL_HOST' => "#{fetch(:docker_appname)}.#{fetch(:proxy)}"
 }
-set :proxy, 'bolt.dockerfly.com'
 
 
 
