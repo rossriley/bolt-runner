@@ -44,28 +44,7 @@ namespace :docker do
     task :run do 
         on roles :host do
             execute build_run_command
-            invoke 'docker:proxy'            
+            invoke 'deploy:restart'           
         end
-    end
-    
-    task :proxy do
-        on roles :host do
-            config = ""
-            proxyport = capture "docker port #{fetch(:docker_appname)} 80"
-            servername = "#{fetch(:docker_appname)}.#{fetch(:proxy)}"
-            config <<  "server {" + "\n"
-            config << "  server_name "+servername+";" + "\n"
-            config << "  location / {" + "\n"
-            config << "    proxy_pass http://"+proxyport+"/;" + "\n"
-            config << "    proxy_set_header Host $http_host;" + "\n"
-            config << "  }" + "\n"
-            config << "}" + "\n"
-            basepath = "dockerappliance/conf/nginx/"
-            destination = basepath + fetch(:docker_appname)+".conf"
-            io   = StringIO.new(config)
-            upload! io,   destination
-            invoke 'deploy:restart'            
-            puts servername
-        end 
     end
 end
