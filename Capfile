@@ -44,7 +44,8 @@ namespace :docker do
     task :run do 
         on roles :host do
             execute build_run_command
-            invoke 'deploy:restart'           
+            servername = "#{fetch(:docker_appname)}.#{fetch(:proxy)}"
+            puts servername          
         end
     end
 end
