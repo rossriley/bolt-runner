@@ -9,7 +9,7 @@ require 'capistrano/setup'
 require 'capistrano/docker'
 
 set :namespace,         "bolt"
-set :application,       -> {"_"+rand(36**6).to_s(36)}
+set :application,       -> {""+rand(36**6).to_s(36)}
 set :password,          "bolt30080"
 set :ports,             ["80"]
 set :volumes,           []
