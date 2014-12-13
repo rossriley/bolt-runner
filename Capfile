@@ -27,12 +27,11 @@ set :docker_image,      -> {"rossriley/docker-bolt:#{fetch(:php, 'latest')}"}
 set :proxy, 'bolt.dockerfly.com'
 set :env_vars,          {
     'BOLT_EXT'=>"#{fetch(:package)} #{fetch(:version)}",
-    'BOLT_THEME' => "#{fetch(:theme, fetch(:package))}",
     'BOLT_TITLE' => "#{fetch(:title)}",
     'VIRTUAL_HOST' => "#{fetch(:docker_appname)}.#{fetch(:proxy)}"
 }
 
-
+:env_vars['BOLT_THEME'] = fetch(:package) if fetch(:theme)
 
 
 task :production do
