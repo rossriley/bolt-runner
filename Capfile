@@ -20,13 +20,14 @@ set :package, ENV['package']
 set :version, ENV['version']
 set :php,     ENV['php']
 set :title,   ENV['title']
+set :theme,   ENV['theme']
 
 
 set :docker_image,      -> {"rossriley/docker-bolt:#{fetch(:php, 'latest')}"}
 set :proxy, 'bolt.dockerfly.com'
 set :env_vars,          {
     'BOLT_EXT'=>"#{fetch(:package)} #{fetch(:version)}",
-    'BOLT_THEME' => "#{fetch(:package)}",
+    'BOLT_THEME' => "#{fetch(:theme, fetch(:package))}",
     'BOLT_TITLE' => "#{fetch(:title)}",
     'VIRTUAL_HOST' => "#{fetch(:docker_appname)}.#{fetch(:proxy)}"
 }
