@@ -31,7 +31,8 @@ set :env_vars,          {
     'VIRTUAL_HOST' => "#{fetch(:docker_appname)}.#{fetch(:proxy)}"
 }
 
-:env_vars['BOLT_THEME'] = fetch(:package) if fetch(:theme)
+
+set :env_vars, fetch(:env_vars).merge({'BOLT_THEME'=> fetch(:package)}) if fetch(:theme)
 
 
 task :production do
