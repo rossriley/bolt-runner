@@ -11,7 +11,7 @@ require 'capistrano/docker'
 set :namespace,         "bolt"
 set :application,       -> {""+rand(36**6).to_s(36)}
 set :password,          "bolt30080"
-set :ports,             ["80"]
+set :ports,             ["80", "443"]
 set :volumes,           []
 set :links,             []
 set :stage,             "production" ### Default stage
