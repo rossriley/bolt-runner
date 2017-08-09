@@ -15,6 +15,7 @@ set :ports,             ["80"]
 set :volumes,           []
 set :links,             []
 set :stage,             "production" ### Default stage
+set :docker_appname, -> { "#{fetch(:namespace)}-#{fetch(:application)}" }
 
 set :package, ENV['package']
 set :version, ENV['version']
