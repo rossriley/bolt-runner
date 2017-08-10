@@ -30,7 +30,7 @@ set :env_vars,          {
     'BOLT_EXT'=>"#{fetch(:package)} #{fetch(:version)}",
     'BOLT_TITLE' => "#{fetch(:title)}",
     'VIRTUAL_HOST' => "#{fetch(:docker_appname)}.#{fetch(:proxy)}",
-    'LETSENCRYPT_HOST' => "#{fetch(:proxy},#{fetch(:docker_appname)}.#{fetch(:proxy)}",
+    'LETSENCRYPT_HOST' => "#{fetch(:proxy)},#{fetch(:docker_appname)}.#{fetch(:proxy)}",
     'LETSENCRYPT_EMAIL' => "ross@oneblackbear.com"
 }
 
